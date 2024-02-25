@@ -1,4 +1,3 @@
-import 'package:either_dart/either.dart';
 import 'package:ta_na_mesa_garcom/modules/login/external/datasources/firestore_get_user.dart';
 import 'package:ta_na_mesa_garcom/modules/login/external/errors/error.dart';
 import 'package:ta_na_mesa_garcom/modules/login/infra/datasource/login_datasource.dart';
@@ -11,8 +10,7 @@ class FirebaseAuthetication implements LoginDatasource {
   FirebaseAuthetication(this._firestoreGetUser);
 
   @override
-  Future<Either<ServerException, UserEntity>> login(
-      String email, String password) async {
+  Future<UserEntity> login(String email, String password) async {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -23,12 +21,12 @@ class FirebaseAuthetication implements LoginDatasource {
         UserEntity? usuario = await _firestoreGetUser.getUser(userUid);
 
         if (usuario != null) {
-          return Right(usuario);
+          throw ServerException();
         } else {
-          return Left(ServerException());
+          throw ServerException();
         }
       } else {
-        return Left(ServerException());
+        throw ServerException();
       }
     } on FirebaseAuthException catch (e) {
       // if (e.code == 'user-not-found') {
@@ -38,7 +36,7 @@ class FirebaseAuthetication implements LoginDatasource {
       // }
 
       print(e);
-      return Left(ServerException());
+      throw ServerException();
     }
   }
 }
