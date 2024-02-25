@@ -39,6 +39,8 @@ dependencies:
   either_dart: ^1.0.0
   mocktail: ^1.0.3
   flutter_modular: ^6.3.2
+  firebase_core: ^2.25.4
+  firebase_auth: ^4.17.4
 
 dev_dependencies:
   flutter_test:
