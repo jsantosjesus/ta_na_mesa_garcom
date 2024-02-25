@@ -18,10 +18,10 @@ class LoginByEmailPasswordFirebaseImpl extends LoginByEmailPasswordFirebase {
     final isEmail = validEmailPassword.isValidEmail(email);
     final isPassword = validEmailPassword.isValidPassword(password);
 
-    if (!isPassword || !isEmail) {
+    if (!isEmail || !isPassword) {
       return Left(ErrorLogin(message: 'Email ou senha invalidos'));
     }
 
-    return repository.login(email, password);
+    return await repository.login(email, password);
   }
 }
