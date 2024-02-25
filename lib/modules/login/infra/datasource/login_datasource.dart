@@ -1,5 +1,8 @@
-import 'package:ta_na_mesa_garcom/modules/login/domain/entities/user.dart';
+import 'package:either_dart/either.dart';
+import 'package:ta_na_mesa_garcom/modules/login/domain/entities/user_entity.dart';
+import 'package:ta_na_mesa_garcom/modules/login/external/errors/error.dart';
 
 abstract class LoginDatasource {
-  Future<User> login(String email, String password);
+  Future<Either<ServerException, UserEntity>> login(
+      String email, String password);
 }

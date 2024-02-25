@@ -1,7 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:ta_na_mesa_garcom/modules/login/domain/entities/user.dart';
+import 'package:ta_na_mesa_garcom/modules/login/domain/entities/user_entity.dart';
 import 'package:ta_na_mesa_garcom/modules/login/domain/errorsLogin/error_login.dart';
 import 'package:ta_na_mesa_garcom/modules/login/domain/repositories/login_repository.dart';
 import 'package:ta_na_mesa_garcom/modules/login/domain/usecase/login_by_email_password_firebase_impl.dart';
@@ -33,7 +33,7 @@ void main() {
   });
 
   test('Testando caso de sucesso', () async {
-    const user = User(
+    const user = UserEntity(
         uid: 'uid',
         nome: 'nome',
         email: 'email',

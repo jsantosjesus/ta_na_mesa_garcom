@@ -1,5 +1,5 @@
 import 'package:either_dart/src/either.dart';
-import 'package:ta_na_mesa_garcom/modules/login/domain/entities/user.dart';
+import 'package:ta_na_mesa_garcom/modules/login/domain/entities/user_entity.dart';
 import 'package:ta_na_mesa_garcom/modules/login/domain/errorsLogin/error_login.dart';
 import 'package:ta_na_mesa_garcom/modules/login/domain/repositories/login_repository.dart';
 import 'package:ta_na_mesa_garcom/modules/login/domain/usecase/login_by_email_password_firebase.dart';
@@ -14,7 +14,8 @@ class LoginByEmailPasswordFirebaseImpl extends LoginByEmailPasswordFirebase {
       {required this.repository, required this.validEmailPassword});
 
   @override
-  Future<Either<ErrorLogin, User>> call(String email, String password) async {
+  Future<Either<ErrorLogin, UserEntity>> call(
+      String email, String password) async {
     final isEmail = validEmailPassword.isValidEmail(email);
     final isPassword = validEmailPassword.isValidPassword(password);
 
